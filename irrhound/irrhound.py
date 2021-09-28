@@ -11,7 +11,7 @@ def irr_hunt(asn, asmacro):
         list
     """
 
-    IRR_SOURCES = [ 'RIPE', 'RIPE-NONAUTH', 'RADB', 'ARIN', 'NTTCOM' ]
+    IRR_SOURCES = [ 'RIPE', 'RIPE-NONAUTH', 'RADB', 'ARIN', 'NTTCOM', 'APNIC', 'AFRINIC' ]
     suggested = []
 
     for source in IRR_SOURCES:
