@@ -7,7 +7,7 @@ requirements = []
 
 setup(
     name="irrhound",
-    version="0.5.1",
+    version="0.6.0",
     author="Francesco Ferreri",
     author_email="f.ferreri@namex.it",
     description="A package to check for IRR resources",
