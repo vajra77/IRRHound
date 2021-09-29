@@ -14,8 +14,9 @@ def irr_hunt(asn, asmacro):
     IRR_SOURCES = [ 'RIPE', 'RIPE-NONAUTH', 'RADB', 'ARIN', 'NTTCOM', 'APNIC', 'AFRINIC' ]
     suggested = []
 
-    for source in IRR_SOURCES:
-        if asmacro:
+    if asmacro:
+        for source in IRR_SOURCES:
+            print("--- Check for {} in {}".format(asmacro, source))
             as_entries = FilterToolkit.bgpq_expand_as_macro(asmacro, source)
             for this_as in as_entries:
                 entries = FilterToolkit.bgpq_expand_asn(this_as, source)
@@ -25,6 +26,7 @@ def irr_hunt(asn, asmacro):
                         suggested.append(source)
 
     for source in IRR_SOURCES:
+        print("--- Check for AS{} in {}".format(asn, source))
         entries = FilterToolkit.bgpq_expand_asn(asn, source)
         if len(entries) > 0:
             print("Found {} entries for AS{} in {}".format(len(entries), asn, source))
