@@ -16,15 +16,19 @@ def irr_hunt(asn, asmacro):
 
     for source in IRR_SOURCES:
         if asmacro:
-            entries = FilterToolkit.bgpq_expand_as_macro(asmacro, source)
-            if len(entries) > 0:
-                #print("Found {} entries for {} in {}".format(len(entries), asmacro, source))
-                if not source in suggested:
-                    suggested.append(source)
+            as_entries = FilterToolkit.bgpq_expand_as_macro(asmacro, source)
+            for this_as in as_entries:
+                entries = FilterToolkit.bgpq_expand_asn(this_as, source)
+                if len(entries) > 0:
+                    print("Found {} entries for AS{} from {} in {}".format(len(entries), this_as, asmacro, source))
+                    if not source in suggested:
+                        suggested.append(source)
 
+    for source in IRR_SOURCES:
         entries = FilterToolkit.bgpq_expand_asn(asn, source)
         if len(entries) > 0:
-            #print("Found {} entries for AS{} in {}".format(len(entries), asn, source))
+            print("Found {} entries for AS{} in {}".format(len(entries), asn, source))
             if not source in suggested:
                 suggested.append(source)
+
     return suggested
