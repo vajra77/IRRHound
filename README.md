@@ -10,7 +10,7 @@ Requires Python3 and a working version of [bgpq3](https://github.com/snar/bgpq3)
 
 ### Install (quick & dirty)
 
-`python setup.py install` 
+`pip install -e .` 
 
 ## Available tools
 In the `tools/` directory you will find some useful tools to deal with IRR resources:
