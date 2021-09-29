@@ -59,7 +59,7 @@ class FilterToolkit:
     def bgpq_expand_asn(asn: str, source: str) -> list:
         entries = []
         filename = FilterToolkit._get_random_filename()
-        cmd = "bgpq3 -3 -S {} -j AS{} > {}".format(source, asn, filename)
+        cmd = "bgpq3 -4 -S {} -j AS{} > {}".format(source, asn, filename)
         os.system(cmd)
         with open(filename) as f:
             data = json.load(f)
@@ -85,4 +85,4 @@ class FilterToolkit:
 
     @staticmethod
     def _get_random_filename():
-        return "irr-{}.json".format(uuid.uuid4().hex)
+        return "/tmp/irr-{}.json".format(uuid.uuid4().hex)

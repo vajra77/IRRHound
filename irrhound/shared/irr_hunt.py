@@ -14,7 +14,6 @@ class IRRHunt:
     def suggested_sources(self):
         return self._suggested_sources.copy()
 
-    @property
     def hunted_prefixes(self, source):
         hunted = []
         if source in self._hunted_prefixes.keys():
