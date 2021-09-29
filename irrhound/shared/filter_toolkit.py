@@ -56,10 +56,24 @@ class FilterToolkit:
         return selected
 
     @staticmethod
-    def bgpq_expand_asn(asn: str, source: str) -> list:
+    def bgpq_expand_asn_v4(asn: str, source: str) -> list:
         entries = []
         filename = FilterToolkit._get_random_filename()
         cmd = "bgpq3 -4 -S {} -j AS{} > {}".format(source, asn, filename)
+        os.system(cmd)
+        with open(filename) as f:
+            data = json.load(f)
+        f.close()
+        os.remove(filename)
+        for net in data["NN"]:
+            entries.append(NetworkPrefix.make(net['prefix'], asn, 0, 'irr'))
+        return entries
+
+    @staticmethod
+    def bgpq_expand_asn_v6(asn: str, source: str) -> list:
+        entries = []
+        filename = FilterToolkit._get_random_filename()
+        cmd = "bgpq3 -6 -S {} -j AS{} > {}".format(source, asn, filename)
         os.system(cmd)
         with open(filename) as f:
             data = json.load(f)
