@@ -19,7 +19,7 @@ def irr_hunt_sources(asn, asmacro, asmacro6):
 
     return hound.suggested_sources
 
-def irr_hunt_resources(asn, asmacro, source):
+def irr_hunt_v4_resources(asn, asmacro, source):
     """
     Returns a list of prefixes registered in IRR source
     Args:
@@ -27,4 +27,8 @@ def irr_hunt_resources(asn, asmacro, source):
     Returns:
         list
     """
-    return []
+    peer = Peer(asn, asmacro, None)
+    hound = IRRHound(peer, IRR_SOURCES)
+    hound.hunt()
+    retrieved = hound.retrieve_v4_prefixes(source)
+    return retrieved

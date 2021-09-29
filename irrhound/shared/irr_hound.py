@@ -27,3 +27,21 @@ class IRRHound:
             if scan.has_entries:
                 self._scanned_sources.append(scan)
         self._hunted = True
+
+    def retrieve_v4_prefixes(self, source):
+        retrieved = []
+        if self._hunted:
+            for scanned in self._scanned_sources:
+                if scanned.source == source:
+                    if scanned.has_v4_entries:
+                        retrieved.extend(scanned.ipv4_prefixes)
+        return retrieved
+
+    def retrieve_v6_prefixes(self, source):
+        retrieved = []
+        if self._hunted:
+            for scanned in self._scanned_sources:
+                if scanned.source == source:
+                    if scanned.has_v6_entries:
+                        retrieved.extend(scanned.ipv6_prefixes)
+        return retrieved

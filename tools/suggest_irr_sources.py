@@ -3,7 +3,7 @@ from irrhound.irrhound import irr_hunt_sources
 
 
 if(len(sys.argv) == 1):
-    print("Usage: suggest_irr_souces <AS number> [<AS set v4>] [<AS set v6>]")
+    print("Usage: suggest_irr_sources <AS number> [<AS set v4>] [<AS set v6>]")
     quit()
 
 asn = sys.argv[1]
