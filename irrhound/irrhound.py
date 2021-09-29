@@ -1,8 +1,8 @@
-from .shared import IRRHunt
+from .shared import IRRHound, Peer
 
 IRR_SOURCES = ['RIPE','RIPE-NONAUTH','RADB','ARIN','APNIC','AFRINIC','NTTCOM']
 
-def irr_hunt_sources(asn, asmacro):
+def irr_hunt_sources(asn, asmacro, asmacro6):
     """
     Returns a list of IRR sources containing objects relatable to
     Autonomous Systems passed as arguments.
@@ -12,15 +12,12 @@ def irr_hunt_sources(asn, asmacro):
         list
     """
 
+    peer = Peer(asn, asmacro, asmacro6)
 
-    hunter = IRRHunt(asn, asmacro, IRR_SOURCES)
-    
-    if asmacro:
-        hunter.hunt_asmacro()
+    hound = IRRHound(peer, IRR_SOURCES)
+    hound.hunt()
 
-    hunter.hunt_asn()
-
-    return hunter.suggested_sources
+    return hound.suggested_sources
 
 def irr_hunt_resources(asn, asmacro, source):
     """
@@ -30,14 +27,4 @@ def irr_hunt_resources(asn, asmacro, source):
     Returns:
         list
     """
-
-    hunter = IRRHunt(asn, asmacro, IRR_SOURCES)
-
-    if asmacro:
-        hunter.hunt_asmacro()
-
-    hunter.hunt_asn()
-    prefixes = hunter.hunted_prefixes(source)
-
-    return prefixes
-
+    return []
