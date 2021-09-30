@@ -1,26 +1,42 @@
-import sys
+import sys,getopt
 from irrhound.irrhound import irr_hunt_sources
 
 
-if(len(sys.argv) == 1):
-    print("Usage: suggest_irr_sources <AS number> [<AS set v4>] [<AS set v6>]")
-    quit()
+def usage():
+    print("Usage: suggest_irr_sources.py -n <ASN> [-m <AS macro>] [-l <AS6 macro>")
 
-asn = sys.argv[1]
+def main():
 
-if 'AS' in asn:
-    asn = asn[2:]
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "n:m:l:", ["asn=", "macro=", "macro6="])
 
-if(len(sys.argv) > 2):
-    asmacro = sys.argv[2]
-else:
-    asmacro = None
+    except getopt.GetoptError as err:
+        # print help information and exit:
+        print(err)  # will print something like "option -a not recognized"
+        usage()
+        sys.exit(2)
 
-if(len(sys.argv) > 3):
-    asmacro6 = sys.argv[3]
-else:
-    asmacro6 = None
+    (asn, macro, macro6) = (None,None,None)
 
-suggested = irr_hunt_sources(asn, asmacro, asmacro6)
+    for o, a in opts:
+        if o in ("-n", "--asn"):
+            asn = a
+            if 'AS' in asn:
+                asn = asn[2:]
+        elif o in ("-m", "--macro"):
+            macro = a
+        elif o in ("-l", "--macro6"):
+            macro6 = a
+        else:
+            assert False, "unhandled option"
 
-print("Suggested source list is {}.".format(suggested))
+    if not asn:
+        print("Error: insufficient arguments")
+        usage()
+        sys.exit(2)
+
+    suggested = irr_hunt_sources(asn, macro, macro6)
+    print("Suggested source list is {}.".format(suggested))
+
+if __name__ == "__main__":
+    main()
