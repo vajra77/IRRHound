@@ -55,13 +55,19 @@ class IRRSourceScan:
         # check for ipv4 prefixes
         as_entries = []
         if self.peer.asmacro:
-            as_entries.extend(FilterToolkit.bgpq_expand_as_macro(self.peer.asmacro, self.source))
+            try:
+                as_entries.extend(FilterToolkit.bgpq_expand_as_macro(self.peer.asmacro, self.source))
+            except:
+                raise Exception("Error while executing scan (bgpq3)")
 
         if not self.peer.asn in as_entries:
                 as_entries.append(self.peer.asn)
 
         for this_as in as_entries:
+            try:
                 self._ipv4_prefixes.extend(FilterToolkit.bgpq_expand_asn_v4(this_as, self.source))
+            except:
+                raise Exception("Error while executing scan (bgpq3)")
 
         # check for ipv6 prefixes
         as6_entries = []
@@ -74,12 +80,17 @@ class IRRSourceScan:
             macro = None
 
         if macro:
-            as6_entries.extend(FilterToolkit.bgpq_expand_as_macro(macro, self.source))
+            try:
+                as6_entries.extend(FilterToolkit.bgpq_expand_as_macro(macro, self.source))
+            except:
+                raise Exception("Error while executing scan (bgpq3)")
 
         if not self.peer.asn in as6_entries:
             as6_entries.append(self.peer.asn)
 
         for this_as in as6_entries:
-            self._ipv6_prefixes.extend(FilterToolkit.bgpq_expand_asn_v6(this_as, self.source))
-
+            try:
+                self._ipv6_prefixes.extend(FilterToolkit.bgpq_expand_asn_v6(this_as, self.source))
+            except:
+                raise Exception("Error while executing scan (bgpq3)")
         self._executed = True
