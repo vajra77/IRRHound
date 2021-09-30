@@ -14,7 +14,7 @@ def irr_hunt_sources(asn, asmacro, asmacro6):
 
     peer = Peer(asn, asmacro, asmacro6)
 
-    hound = IRRHound(peer, IRRSourceLists.default_extended())
+    hound = IRRHound(peer, IRRSourceLists.all())
     hound.hunt()
 
     return hound.suggested_sources
