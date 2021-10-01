@@ -3,11 +3,11 @@ from setuptools import setup, find_packages
 with open("README.md", "r") as readme_file:
     readme = readme_file.read()
 
-requirements = []
+requirements = ['ipwhois>=1.2.0']
 
 setup(
     name="irrhound",
-    version="1.0.1",
+    version="1.2.0",
     author="Francesco Ferreri",
     author_email="f.ferreri@namex.it",
     description="A package to check for IRR resources",

@@ -1,6 +1,5 @@
-from .shared import IRRHound, IRRSourceLists, Peer
+from .shared import IRRScan, Peer
 
-IRR_SOURCES = ['RIPE','RIPE-NONAUTH','RADB','ARIN','APNIC','AFRINIC','NTTCOM']
 
 def irr_hunt_sources(asn, asmacro, asmacro6):
     """
@@ -14,12 +13,15 @@ def irr_hunt_sources(asn, asmacro, asmacro6):
 
     peer = Peer(asn, asmacro, asmacro6)
 
-    hound = IRRHound(peer, IRRSourceLists.all())
-    hound.hunt()
+    scan = IRRScan(peer)
+    try:
+        scan.execute()
+    except:
+        raise 'Error while scanning IRR sources'
 
-    return hound.suggested_sources
+    return scan.selected_sources()
 
-def irr_hunt_v4_resources(asn, asmacro, source):
+def irr_hunt_resources(asn, asmacro, asmacro6):
     """
     Returns a list of prefixes registered in IRR source
     Args:
@@ -27,22 +29,11 @@ def irr_hunt_v4_resources(asn, asmacro, source):
     Returns:
         list
     """
-    peer = Peer(asn, asmacro, None)
-    hound = IRRHound(peer, IRRSourceLists.default())
-    hound.hunt()
-    retrieved = hound.retrieve_v4_prefixes(source)
-    return retrieved
+    peer = Peer(asn, asmacro, asmacro6)
+    scan = IRRScan(peer)
+    try:
+        scan.execute()
+    except:
+        raise 'Error while scanning IRR sources'
 
-def irr_hunt_v6_resources(asn, asmacro6, source):
-    """
-    Returns a list of prefixes registered in IRR source
-    Args:
-        irr_hunt (asn, asmacro6, source): main ASN to check for, registered AS-SET to check for, IRR source
-    Returns:
-        list
-    """
-    peer = Peer(asn, None, asmacro6)
-    hound = IRRHound(peer, IRRSourceLists.default())
-    hound.hunt()
-    retrieved = hound.retrieve_v6_prefixes(source)
-    return retrieved
+    return scan.routes

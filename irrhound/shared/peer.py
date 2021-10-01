@@ -8,13 +8,13 @@ class Peer:
         self._asmacro6 = asmacro6
 
     @property
-    def asn(self):
+    def asn(self) -> int:
         return self._asn
 
     @property
-    def asmacro(self):
+    def asmacro(self) -> str:
         return self._asmacro
 
     @property
-    def asmacro6(self):
+    def asmacro6(self) -> str:
         return self._asmacro6
