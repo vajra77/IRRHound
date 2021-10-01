@@ -1,11 +1,10 @@
 # IRRHound
 
-A simple package to deal with network resource registered into Internet Routing Registries (IRR).
-Currently checks for IPv4 resources only.
+A simple package to deal with network resources registered into Internet Routing Registries (IRR).
 
 ## Description
 
-As IPv4 prefixes keep being traded around the world, it is become increasingly challenging to track registration details for routing resources (ROUTE objects) in the variously available RIRs. Complete knowledge of these resources is fundamental to provide reliable automatic generation of BGP input filters, expecially in Route Server implementations at Internet Exchange Points.
+As IPv4 prefixes keep being traded around the world, it is become increasingly challenging to track registration details for routing resources (ROUTE objects) in the variously available IRRs. Complete knowledge of these resources is fundamental to provide reliable automatic generation of BGP input filters, expecially in Route Server implementations at Internet Exchange Points.
 This package provides a library of functions and some example tools to perform extensive research for a given AS registered resources, research strategy is accomplished as follows:
 
 - Given an input AS number and related AS-SET (both v4/v6 if needed) a recursive research is performed against `whois.radb.net`whois server by means of the `bgpq3` tool, in order to retrieve the full list of main AS and customers'ASes.
