@@ -7,7 +7,7 @@ requirements = ['ipwhois>=1.2.0']
 
 setup(
     name="irrhound",
-    version="1.2.0",
+    version="1.2.1",
     author="Francesco Ferreri",
     author_email="f.ferreri@namex.it",
     description="A package to check for IRR resources",

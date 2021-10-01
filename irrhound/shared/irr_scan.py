@@ -42,9 +42,12 @@ class IRRScan:
                 if new_route.cidr in self._routes.keys():
                     existing_route = self._routes[new_route.cidr]
                     if self._source_is_preferred(new_route.source, existing_route.source):
+                        new_route.add_duplicate(existing_route)
                         self._routes[new_route.cidr] = new_route
                         self._increase_source_weight(new_route.source)
                         self._decrease_source_weight(existing_route.source)
+                    else:
+                        existing_route.add_duplicate(new_route)
                 else:
                     self._routes[new_route.cidr] = new_route
                     self._increase_source_weight(new_route.source)

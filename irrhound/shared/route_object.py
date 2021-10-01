@@ -10,6 +10,7 @@ class RouteObject:
             self._proto = 4
         self._origin = origin
         self._source = source
+        self._duplicates = []
 
     @property
     def cidr(self) -> str:
@@ -26,4 +27,16 @@ class RouteObject:
     @property
     def origin(self) -> int:
         return self._origin
+
+    @property
+    def has_duplicates(self) -> bool:
+        return len(self._duplicates) > 0
+
+    @property
+    def duplicates(self) -> list:
+        return self._duplicates.copy()
+
+    def add_duplicate(self, other) -> None:
+        self._duplicates.append(other)
+        self._duplicates.extend(other.duplicates)
 

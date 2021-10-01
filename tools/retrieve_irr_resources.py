@@ -39,7 +39,9 @@ def main():
     print("# Resources for AS{}:".format(asn))
     for route in retrieved:
         print("{} with origin AS{} [{}]".format(route.cidr, route.origin, route.source))
-
+        if route.has_duplicates:
+            for dup in route.duplicates:
+                print("-> [DUP] {} with origin AS{} [{}]".format(dup.cidr, dup.origin, dup.source))
 
 if __name__ == "__main__":
     main()
