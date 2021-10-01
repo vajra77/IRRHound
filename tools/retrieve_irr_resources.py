@@ -1,5 +1,5 @@
 import sys,getopt
-from irrhound.irrhound import irr_hunt_resources
+from irrhound.irrhound import irr_hunt_routes
 
 def usage():
     print("Usage: retrieve_irr_resources.py -n <ASN> [-m <AS macro>] [-l <AS-MACRO6>]")
@@ -34,14 +34,14 @@ def main():
         usage()
         sys.exit(2)
 
-    retrieved = irr_hunt_resources(asn, macro, macro6)
+    retrieved = irr_hunt_routes(asn, macro, macro6)
 
     print("# Resources for AS{}:".format(asn))
-    for route in retrieved:
-        print("{} with origin AS{} [{}]".format(route.cidr, route.origin, route.source))
-        if route.has_duplicates:
-            for dup in route.duplicates:
-                print("-> [DUP] {} with origin AS{} [{}]".format(dup.cidr, dup.origin, dup.source))
+    for route in retrieved['routes']:
+        print("{} with origin AS{} [{}]".format(route['cidr'], route['origin'], route['source']))
+        if len(route['duplicates']) > 0:
+            for dup in route['duplicates']:
+                print("--> [DUP] {} with origin AS{} [{}]".format(dup['cidr'], dup['origin'], dup['source']))
 
 if __name__ == "__main__":
     main()

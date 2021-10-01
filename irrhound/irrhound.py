@@ -18,17 +18,19 @@ def irr_hunt_sources(asn, asmacro, asmacro6):
         scan.execute()
     except:
         raise 'Error while scanning IRR sources'
+    source_list = scan.selected_sources()
+    return { 'sources': source_list }
 
-    return scan.selected_sources()
-
-def irr_hunt_resources(asn, asmacro, asmacro6):
+def irr_hunt_routes(asn, asmacro, asmacro6):
     """
     Returns a list of prefixes registered in IRR source
     Args:
-        irr_hunt (asn, asmacro, source): main ASN to check for, registered AS-SET to check for, IRR source
+        irr_hunt (asn, asmacro, asmacro6): main ASN to check for, registered AS-SET to check for, IRR source
     Returns:
         list
     """
+    rlist = []
+
     peer = Peer(asn, asmacro, asmacro6)
     scan = IRRScan(peer)
     try:
@@ -36,4 +38,7 @@ def irr_hunt_resources(asn, asmacro, asmacro6):
     except:
         raise 'Error while scanning IRR sources'
 
-    return scan.routes
+    for route in scan.routes:
+        rlist.append(route.to_dict())
+
+    return { 'routes': rlist }

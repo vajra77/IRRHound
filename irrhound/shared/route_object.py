@@ -40,3 +40,9 @@ class RouteObject:
         self._duplicates.append(other)
         self._duplicates.extend(other.duplicates)
 
+    def to_dict(self) -> dict:
+        dup_list = []
+        if self.has_duplicates:
+            for dup in self.duplicates:
+                dup_list.append({ 'cidr': dup.cidr, 'origin': dup.origin, 'source': dup.source })
+        return { 'cidr': self.cidr, 'origin': self.origin, 'source': self.source, 'duplicates': dup_list }

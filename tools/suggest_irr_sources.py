@@ -36,7 +36,7 @@ def main():
         sys.exit(2)
 
     suggested = irr_hunt_sources(asn, macro, macro6)
-    print("Suggested source list is {}.".format(suggested))
+    print("Suggested source list is {}.".format(suggested['sources']))
 
 if __name__ == "__main__":
     main()
