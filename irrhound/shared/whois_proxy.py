@@ -18,9 +18,9 @@ class WhoisProxy:
     def expand_as_macro(macro: str) -> list:
         entries = []
         filename = WhoisProxy._get_random_tmpfile()
-        cmd = "bgpq3 -h whois.radb.net -3 -t -j {} > {}".format(macro, filename)
+        cmd = "bgpq4 -h whois.radb.net -t -j {} > {}".format(macro, filename)
         if os.system(cmd) != 0:
-            raise Exception("Error in execution of bgpq3")
+            raise Exception("Error in execution of bgpq4")
         with open(filename) as f:
             data = json.load(f)
         f.close()

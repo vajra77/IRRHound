@@ -31,7 +31,7 @@ In the `tools/` directory you will find some useful tools to deal with IRR resou
 
 ### Requirements 
 
-Requires Python3 and a working version of [bgpq3](https://github.com/snar/bgpq3) plus the [ipwhois](https://ipwhois.readthedocs.io/en/latest/) Python package.
+Requires Python3 and a working version of [bgpq4](https://github.com/bgp/bgpq4) plus the [ipwhois](https://ipwhois.readthedocs.io/en/latest/) Python package.
 
 ### Install (quick & dirty)
 
