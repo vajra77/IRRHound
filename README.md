@@ -9,7 +9,7 @@ This package provides a library of functions and some example tools to perform e
 
 - Given an input AS number and related AS-SET (both v4/v6 if needed) a recursive research is performed against `whois.radb.net`whois server by means of the `bgpq3` tool, in order to retrieve the full list of main AS and customers'ASes.
 - For each AS, related ROUTE objects are retrieved across all available registries
-- In case multiple ROUTE objects are registered for the same prefix in different registries, a selection process favours objects in most accessed registries (in order to reduce the number of registries one needs to query in order to perform filter generation)
+- In case multiple ROUTE objects are registered for the same prefix in different registries, a selection process favours objects in most accessed registries (in order to reduce the number of registries one needs to query)
 - Information about duplicate ROUTE objects is kept with the main object selected
 
 ## Package functions
