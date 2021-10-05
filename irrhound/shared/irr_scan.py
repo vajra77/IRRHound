@@ -4,6 +4,9 @@ from .irr_source_list import IRRSourceList
 
 
 class IRRScan:
+    """
+        Wrapper class for the entire IRR scan process, peer-based
+    """
 
     def __init__(self, peer: Peer):
         self._peer = peer

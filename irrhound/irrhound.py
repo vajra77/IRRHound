@@ -11,13 +11,12 @@ def irr_hunt_sources(asn, asmacro, asmacro6):
         list
     """
 
-    peer = Peer(asn, asmacro, asmacro6)
+    peer = Peer(int(asn), asmacro, asmacro6)
 
     scan = IRRScan(peer)
-    try:
-        scan.execute()
-    except:
-        raise 'Error while scanning IRR sources'
+
+    scan.execute()
+
     source_list = scan.selected_sources()
     return { 'sources': source_list }
 
@@ -31,12 +30,10 @@ def irr_hunt_routes(asn, asmacro, asmacro6):
     """
     rlist = []
 
-    peer = Peer(asn, asmacro, asmacro6)
+    peer = Peer(int(asn), asmacro, asmacro6)
     scan = IRRScan(peer)
-    try:
-        scan.execute()
-    except:
-        raise 'Error while scanning IRR sources'
+
+    scan.execute()
 
     for route in scan.routes:
         rlist.append(route.to_dict())
