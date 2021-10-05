@@ -30,18 +30,21 @@ def main():
             assert False, "unhandled option"
 
     if not asn:
-        print("Error: insufficient arguments")
+        print("Error: insufficient arguments", file=sys.stderr)
         usage()
         sys.exit(2)
 
-    retrieved = irr_hunt_routes(asn, macro, macro6)
-
-    print("# Resources for AS{}:".format(asn))
-    for route in retrieved['routes']:
-        print("{} with origin AS{} [{}]".format(route['cidr'], route['origin'], route['source']))
-        if len(route['duplicates']) > 0:
-            for dup in route['duplicates']:
-                print("--> [DUP] {} with origin AS{} [{}]".format(dup['cidr'], dup['origin'], dup['source']))
+    try:
+        retrieved = irr_hunt_routes(asn, macro, macro6)
+    except Exception as err:
+        print("Error while retrieving resources: {}".format(err), file=sys.stderr)
+    else:
+        print("# Resources for AS{}:".format(asn))
+        for route in retrieved['routes']:
+            print("{} with origin AS{} [{}]".format(route['cidr'], route['origin'], route['source']))
+            if len(route['duplicates']) > 0:
+                for dup in route['duplicates']:
+                    print("--> [DUP] {} with origin AS{} [{}]".format(dup['cidr'], dup['origin'], dup['source']))
 
 if __name__ == "__main__":
     main()

@@ -31,12 +31,16 @@ def main():
             assert False, "unhandled option"
 
     if not asn:
-        print("Error: insufficient arguments")
+        print("Error: insufficient arguments", file=sys.stderr)
         usage()
         sys.exit(2)
 
-    suggested = irr_hunt_sources(asn, macro, macro6)
-    print("Suggested source list is {}.".format(suggested['sources']))
+    try:
+        suggested = irr_hunt_sources(asn, macro, macro6)
+    except Exception as err:
+        print("Error while executing hunt: {}".format(err), file=sys.stderr)
+    else:
+        print("Suggested source list is {}.".format(suggested['sources']))
 
 if __name__ == "__main__":
     main()
