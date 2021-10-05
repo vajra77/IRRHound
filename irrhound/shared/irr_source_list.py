@@ -1,6 +1,9 @@
 
 
 class IRRSourceList:
+    """
+        Static information about IRR registries
+    """
 
     _ALL_SOURCES = [
             'RADB',         # id 0

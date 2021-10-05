@@ -14,7 +14,7 @@ This package provides a library of functions and some example tools to perform e
 
 ## Package functions
 
-Package `irrhound.irrhound` delivers two functions:
+Package `irrhound.irrhound` provides two functions:
 
 - `irr_hunt_sources(asn,asmacro,asmacro6)`: returns a minimal set of sources containing resources (ROUTE objects) for the given AS number and related v4/v6 customers' AS-SETs. Return value is a dict with the following structure: `{ 'sources': [list] }` 
 - `irr_hunt_routes(asn,asmacro,asmacro6)`: returns a complete set of ROUTE objects for the given AS number and v4/v6 customers' AS-SETs. Each ROUTE object descriptor can carry additional duplicates from different regisitries. Return value is a dict with the following structure: `{ 'routes': [ { 'cidr': network, 'origin': ASN, 'source': IRR source, 'duplicates': [list of routes in dict format] }`
