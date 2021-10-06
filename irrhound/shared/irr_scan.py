@@ -31,7 +31,10 @@ class IRRScan:
 
         # expand AS-SET (v6)
         if self.peer.asmacro6:
-            as_list.extend(WhoisProxy.expand_as_macro(self.peer.asmacro6))
+            tmp_list = WhoisProxy.expand_as_macro(self.peer.asmacro6)
+            for new_as in tmp_list:         # try to avoid duplicates
+                if not (new_as in as_list):
+                    as_list.append(new_as)
 
         # check if peer AS is missing from AS-SET generated list
         if not self.peer.asn in as_list:
