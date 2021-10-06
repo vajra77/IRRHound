@@ -55,7 +55,8 @@ class WhoisProxy:
 
         for net in lookup['nets']:
             cidr = net['cidr']
-            route = RouteObject(net['cidr'], asn, net['source'])
+            source = net['source'].upper() # some records have lowercase source
+            route = RouteObject(cidr, asn, source)
             result.append(route)
 
         return result

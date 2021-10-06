@@ -77,10 +77,10 @@ class IRRScan:
         if source in self._source_weight.keys():
             self._source_weight[source] += 1
         else:
-            raise Exception("Unrecognized IRR source")
+            raise Exception("Unrecognized IRR source: {}".format(source))
 
     def _decrease_source_weight(self, source: str) -> None:
         if source in self._source_weight.keys():
             self._source_weight[source] -= 1
         else:
-            raise Exception("Unrecognized IRR source")
+            raise Exception("Unrecognized IRR source: {}".format(source))
