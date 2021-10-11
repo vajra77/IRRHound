@@ -1,6 +1,6 @@
 # IRRHound
 
-A simple package to deal with network resources registered into Internet Routing Registries (IRR).
+A simple package to deal with network resources registered into Internet Routing Registries (IRR). [Jump to usage examples](#markdown-header-basic-usage) or read through the documentation.
 
 ## Description
 
