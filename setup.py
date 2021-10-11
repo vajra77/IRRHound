@@ -17,7 +17,9 @@ setup(
     packages=find_packages(),
     install_requires=requirements,
     classifiers=[
-        "Programming Language :: Python :: 3.8",
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',  # Define that your audience are developers
         "License :: OSI Approved :: CC0 1.0 Universal",
+        "Programming Language :: Python :: 3.8"
     ],
 )
