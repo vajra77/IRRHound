@@ -14,10 +14,9 @@ def test_scan():
 
 def test_routes():
 
-    peer = Peer(12637, 'AS12637:AS-CUSTOMERS', None)
+    peer = Peer(137, 'AS-GARR', None)
     scan = IRRScan(peer)
     scan.execute()
     for route in scan.routes:
         print("Route: {} with origin AS{} [{}]".format(route.cidr, route.origin, route.source))
-
     assert len(scan.routes) > 0

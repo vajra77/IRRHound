@@ -1,14 +1,14 @@
 from irrhound.shared import WhoisProxy
 
 
-# def test_whois_expand_as():
-#
-#     asn = 24796
-#
-#     objects = WhoisProxy.expand_as(asn)
-#
-#     for route in objects:
-#         print("P: {}".format(route.cidr))
-#
-#     assert (len(objects) > 0)
+def test_whois_expand_as():
+
+     asn = 137
+
+     objects = WhoisProxy.expand_as(asn)
+
+     for route in objects:
+         print("P: {} from source {}".format(route.cidr, route.source))
+
+     assert (len(objects) > 0)
 

@@ -55,10 +55,15 @@ class WhoisProxy:
 
         for net in lookup['nets']:
             cidr = net['cidr']
-            source = net['source'].upper() # some records have lowercase source
+            raw_source = net['source']
+            # deal with garbage remarks in ipwhois source
+            multiline = raw_source.find('\n')
+            if multiline > 0:
+                source = raw_source[0:multiline].upper()
+            else:
+                source = raw_source.upper()
             route = RouteObject(cidr, asn, source)
             result.append(route)
-
         return result
 
     # internal use, required for temporary bgpq4 output storage
