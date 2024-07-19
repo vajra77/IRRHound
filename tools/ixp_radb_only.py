@@ -29,12 +29,12 @@ if __name__ == "__main__":
     load_members(sys.argv[1])
     with open(sys.argv[2], "w+") as f:
         for member in MEMBERS:
-            f.write(f"--- {member['name']} ---")
+            f.write(f"--- {member['name']} ---\n")
             try:
                 sources = irrhound.irr_hunt_sources(member['asnum'], member['asmacro'], None)
                 if 'RADB' in sources:
-                    f.write(f"Member {member['name']} has resources in: {sources}")
+                    f.write(f"Member {member['name']} has resources in: {sources}\n")
             except Exception as e:
-                f.write(f"ERROR: {e}")
+                f.write(f"ERROR: {e}\n")
             finally:
                 time.sleep(10)
