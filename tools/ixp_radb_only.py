@@ -13,9 +13,11 @@ def load_members(ixf_url):
     for member in data['member_list']:
         name = member['name']
         asnum = member['asnum']
+        asmacro = None
         for conn in member['connection_list']:
             for vlan in conn['vlan_list']:
-                asmacro = vlan['ipv4']['as_macro']
+                if 'as_macro' in vlan['ipv4'].keys():
+                    asmacro = vlan['ipv4']['as_macro']
         MEMBERS.append({
             'name': name,
             'asnum': asnum,
