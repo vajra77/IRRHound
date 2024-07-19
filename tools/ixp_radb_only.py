@@ -28,7 +28,7 @@ def load_members(ixf_url):
 if __name__ == "__main__":
     load_members(sys.argv[1])
     for member in MEMBERS:
-        sources = irrhound.irr_hunt_sources(member.asnum, member.asmacro, None)
+        sources = irrhound.irr_hunt_sources(member['asnum'], member['asmacro'], None)
         if 'RADB' in sources:
             print(f"Member {member.name} has resources in: {sources}")
         time.sleep(10)
