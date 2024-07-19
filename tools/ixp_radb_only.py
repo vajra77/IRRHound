@@ -12,7 +12,7 @@ def load_members(ixf_url):
     data = json.loads(response.read())
     for member in data['member_list']:
         name = member['name']
-        asnum = member['asn']
+        asnum = member['asnum']
         for conn in member['connection_list']:
             for vlan in conn['vlan_list']:
                 asmacro = vlan['ipv4']['asmacro']
