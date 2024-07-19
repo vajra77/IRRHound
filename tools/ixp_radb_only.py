@@ -27,13 +27,14 @@ def load_members(ixf_url):
 
 if __name__ == "__main__":
     load_members(sys.argv[1])
-    for member in MEMBERS:
-        print(f"--- {member['name']} ---")
-        try:
-            sources = irrhound.irr_hunt_sources(member['asnum'], member['asmacro'], None)
-            if 'RADB' in sources:
-                print(f"Member {member['name']} has resources in: {sources}")
-        except Exception as e:
-            print(f"ERROR: {e}")
-        finally:
-            time.sleep(10)
+    with open(sys.argv[2], "w+") as f:
+        for member in MEMBERS:
+            f.write(f"--- {member['name']} ---")
+            try:
+                sources = irrhound.irr_hunt_sources(member['asnum'], member['asmacro'], None)
+                if 'RADB' in sources:
+                    f.write(f"Member {member['name']} has resources in: {sources}")
+            except Exception as e:
+                f.write(f"ERROR: {e}")
+            finally:
+                time.sleep(10)
