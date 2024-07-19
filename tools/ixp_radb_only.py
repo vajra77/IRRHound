@@ -37,4 +37,5 @@ if __name__ == "__main__":
             except Exception as e:
                 f.write(f"ERROR: {e}\n")
             finally:
+                f.flush()
                 time.sleep(10)
